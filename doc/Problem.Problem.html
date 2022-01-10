@@ -1,0 +1,163 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link rel="Up" href="Problem.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Ihm" rel="Chapter" href="Ihm.html">
+<link title="Problem" rel="Chapter" href="Problem.html">
+<link title="Rrt" rel="Chapter" href="Rrt.html"><title>RRT : Problem.Problem</title>
+</head>
+<body>
+<div class="navbar">&nbsp;<a class="up" href="Problem.html" title="Problem">Up</a>
+&nbsp;</div>
+<h1>Module <a href="type_Problem.Problem.html">Problem.Problem</a></h1>
+
+<pre><span id="MODULEProblem"><span class="keyword">module</span> Problem</span>: <code class="code">sig</code> <a href="Problem.Problem.html">..</a> <code class="code">end</code></pre><hr width="100%">
+
+<pre><code><span id="TYPEaircraft"><span class="keyword">type</span> <code class="type"></code>aircraft</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTaircraft.id_aircraft">id_aircraft</span>&nbsp;: <code class="type">int</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTaircraft.x">x</span>&nbsp;: <code class="type">float</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTaircraft.y">y</span>&nbsp;: <code class="type">float</code>;</code></td>
+
+</tr></table>
+<code>}</code>
+
+
+
+<pre><code><span id="TYPEnode_aircraft"><span class="keyword">type</span> <code class="type"></code>node_aircraft</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTnode_aircraft.id">id</span>&nbsp;: <code class="type">int</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span class="keyword">mutable&nbsp;</span><span id="TYPEELTnode_aircraft.aircraft">aircraft</span>&nbsp;: <code class="type"><a href="Problem.Problem.html#TYPEaircraft">aircraft</a></code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span class="keyword">mutable&nbsp;</span><span id="TYPEELTnode_aircraft.pred">pred</span>&nbsp;: <code class="type">int</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span class="keyword">mutable&nbsp;</span><span id="TYPEELTnode_aircraft.time">time</span>&nbsp;: <code class="type">float</code>;</code></td>
+
+</tr></table>
+<code>}</code>
+
+
+
+<pre><code><span id="TYPEparam"><span class="keyword">type</span> <code class="type"></code>param</span> = {</code></pre><table class="typetable">
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTparam.nb_aircrafts">nb_aircrafts</span>&nbsp;: <code class="type">int</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTparam.goal">goal</span>&nbsp;: <code class="type"><a href="Problem.Problem.html#TYPEnode_aircraft">node_aircraft</a> array</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTparam.start">start</span>&nbsp;: <code class="type"><a href="Problem.Problem.html#TYPEnode_aircraft">node_aircraft</a> array</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTparam.dist_min">dist_min</span>&nbsp;: <code class="type">float</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTparam.x_min">x_min</span>&nbsp;: <code class="type">float</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTparam.y_min">y_min</span>&nbsp;: <code class="type">float</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTparam.x_max">x_max</span>&nbsp;: <code class="type">float</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTparam.y_max">y_max</span>&nbsp;: <code class="type">float</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span id="TYPEELTparam.v">v</span>&nbsp;: <code class="type">float</code>;</code></td>
+
+</tr>
+<tr>
+<td align="left" valign="top" >
+<code>&nbsp;&nbsp;</code></td>
+<td align="left" valign="top" >
+<code><span class="keyword">mutable&nbsp;</span><span id="TYPEELTparam.pas">pas</span>&nbsp;: <code class="type">float</code>;</code></td>
+
+</tr></table>
+<code>}</code>
+
+
+
+<pre><span id="VALinit"><span class="keyword">val</span> init</span> : <code class="type">unit -&gt; <a href="Problem.Problem.html#TYPEparam">param</a></code></pre>
+<pre><span id="VALpredecessor"><span class="keyword">val</span> predecessor</span> : <code class="type"><a href="Problem.Problem.html#TYPEnode_aircraft">node_aircraft</a> array -&gt;<br>       <a href="Problem.Problem.html#TYPEnode_aircraft">node_aircraft</a> -&gt; <a href="Problem.Problem.html#TYPEnode_aircraft">node_aircraft</a></code></pre><div class="info ">
+<div class="info-desc">
+<p><code class="code">predecessor nodes node</code> returns the predecessor of <code class="code">node</code> in the array <code class="code">nodes</code></p>
+</div>
+</div>
+</body></html>

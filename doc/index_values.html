@@ -1,0 +1,219 @@
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Ihm" rel="Chapter" href="Ihm.html">
+<link title="Problem" rel="Chapter" href="Problem.html">
+<link title="Rrt" rel="Chapter" href="Rrt.html"><title>RRT : Index of values</title>
+</head>
+<body>
+<div class="navbar">&nbsp;<a class="up" href="index.html" title="Index">Up</a>
+&nbsp;</div>
+<h1>Index of values</h1>
+<table>
+<tr><td align="left"><div>A</div></td></tr>
+<tr><td><a href="Rrt.html#VALadd_and_test">add_and_test</a> [<a href="Rrt.html">Rrt</a>]</td>
+<td><div class="info">
+<p><code class="code">add_and_test param bool_array new_node_array nodes f_dist</code> returns an array of booleans and add <code class="code">new_node_array</code> to the tree</p>
+
+</div>
+</td></tr>
+<tr><td align="left"><div>C</div></td></tr>
+<tr><td><a href="Rrt.html#VALcalcul_x">calcul_x</a> [<a href="Rrt.html">Rrt</a>]</td>
+<td><div class="info">
+<p><code class="code">calcul_x param node_start node_goal</code> returns the coordinates <code class="code">x</code> from <code class="code">node_start</code> to <code class="code">node_goal</code></p>
+
+</div>
+</td></tr>
+<tr><td><a href="Rrt.html#VALcalcul_y">calcul_y</a> [<a href="Rrt.html">Rrt</a>]</td>
+<td><div class="info">
+<p>Same as <code class="code">calcul_x</code> for coordinate <code class="code">y</code></p>
+
+</div>
+</td></tr>
+<tr><td><a href="Rrt.html#VALcollision_free">collision_free</a> [<a href="Rrt.html">Rrt</a>]</td>
+<td><div class="info">
+<p><code class="code">collision_free param nodes</code> return true if all the aircraft of <code class="code">nodes</code> are not in conflicts with each other</p>
+
+</div>
+</td></tr>
+<tr><td><a href="Rrt.html#VALcompare_dist">compare_dist</a> [<a href="Rrt.html">Rrt</a>]</td>
+<td><div class="info">
+<p><code class="code">compare_dist n_ref n1 n2 f_dist</code> compares <code class="code">f_dist n_ref n1</code> and <code class="code">f_dist n_ref n2</code> as with <code class="code">Float.compare</code> in the standard library</p>
+
+</div>
+</td></tr>
+<tr><td><a href="Ihm.html#VALcompare_node_id">compare_node_id</a> [<a href="Ihm.html">Ihm</a>]</td>
+<td><div class="info">
+<p><code class="code">compare_node_id n1 n2</code> returns <code class="code">0</code> if <code class="code">n1.id</code> equals <code class="code">n2.id</code>, a negative integer if <code class="code">n1.id</code> is less than <code class="code">n2.id</code>, and a positive integer if <code class="code">n1.id</code> is greater than <code class="code">n2.id</code></p>
+
+</div>
+</td></tr>
+<tr><td align="left"><div>D</div></td></tr>
+<tr><td><a href="Ihm.html#VALdefine_colors">define_colors</a> [<a href="Ihm.html">Ihm</a>]</td>
+<td><div class="info">
+<p><code class="code">define_colors nb mini maxi</code> returns an array of <code class="code">nb</code> <code class="code">Graphics.color</code> between <code class="code">mini</code> and <code class="code">maxi</code> for the floating value of <code class="code">r</code>, <code class="code">g</code> or <code class="code">b</code>.</p>
+
+</div>
+</td></tr>
+<tr><td><a href="Ihm.html#VALdisplay">display</a> [<a href="Ihm.html">Ihm</a>]</td>
+<td><div class="info">
+<p><code class="code">display param scale nodes r_pt r_obst time</code> shows on the graphic window the aircrafts of <code class="code">nodes</code> with a dot radius of <code class="code">r_pt</code> and with an obstacle radius of <code class="code">r_obst</code> for the last aircrafts.</p>
+
+</div>
+</td></tr>
+<tr><td><a href="Ihm.html#VALdisplay_pt">display_pt</a> [<a href="Ihm.html">Ihm</a>]</td>
+<td><div class="info">
+<p><code class="code">display_pt scale node r_pt r_obst last time</code> shows on the graphic window the dots corresponding to the aircrafts of <code class="code">node</code> with the help of the <code class="code">scale</code> function
+    The dots have the radius <code class="code">r_pt</code> and if <code class="code">last</code> is <code class="code">true</code>, it will draw a red circle of radius <code class="code">r_obst</code> which represents the obstacle area.</p>
+
+</div>
+</td></tr>
+<tr><td><a href="Ihm.html#VALdisplay_seg">display_seg</a> [<a href="Ihm.html">Ihm</a>]</td>
+<td><div class="info">
+<p><code class="code">display_seg scale node1 node2 acc</code> shows on the graphic window the segments between <code class="code">node1</code> and <code class="code">node2</code> with the help of the <code class="code">scale</code> function.</p>
+
+</div>
+</td></tr>
+<tr><td><a href="Ihm.html#VALdisplay_traceback">display_traceback</a> [<a href="Ihm.html">Ihm</a>]</td>
+<td><div class="info">
+<p><code class="code">display_traceback path nodes scale acc</code> display the <code class="code">path</code> with the help of the <code class="code">scale</code> function and <code class="code">nodes</code> which is the array of all the nodes of the graph.</p>
+
+</div>
+</td></tr>
+<tr><td><a href="Ihm.html#VALdisplay_tracebacks">display_tracebacks</a> [<a href="Ihm.html">Ihm</a>]</td>
+<td><div class="info">
+<p><code class="code">display_tracebacks paths nodes scale</code> display the each <code class="code">path</code> of <code class="code">paths</code> with the help of the <code class="code">scale</code> function and <code class="code">nodes</code> which is the array of all the nodes of the graph.</p>
+
+</div>
+</td></tr>
+<tr><td><a href="Rrt.html#VALdistance_aircraft">distance_aircraft</a> [<a href="Rrt.html">Rrt</a>]</td>
+<td><div class="info">
+<p><code class="code">distance_aircraft a1 a2</code> return the euclidian distance between <code class="code">a1</code> and <code class="code">a2</code></p>
+
+</div>
+</td></tr>
+<tr><td><a href="Rrt.html#VALdistance_node_aircraft">distance_node_aircraft</a> [<a href="Rrt.html">Rrt</a>]</td>
+<td><div class="info">
+<p><code class="code">distance_node_aircraft param n1 n2</code> return the distance between <code class="code">n1</code> and <code class="code">n2</code></p>
+
+</div>
+</td></tr>
+<tr><td><a href="Ihm.html#VALdo_at_end">do_at_end</a> [<a href="Ihm.html">Ihm</a>]</td>
+<td><div class="info">
+<p><code class="code">do_at_end paths nodes_array param</code> displays the final GUI for the user in the terminal</p>
+
+</div>
+</td></tr>
+<tr><td><a href="Ihm.html#VALdo_at_iter">do_at_iter</a> [<a href="Ihm.html">Ihm</a>]</td>
+<td><div class="info">
+<p><code class="code">do_at_iter nodes_array param</code> displays the aircrafts of <code class="code">nodes_array</code> at each iteration of the RRT algorithm</p>
+
+</div>
+</td></tr>
+<tr><td align="left"><div>I</div></td></tr>
+<tr><td><a href="Problem.Problem.html#VALinit">init</a> [<a href="Problem.Problem.html">Problem.Problem</a>]</td>
+<td></td></tr>
+<tr><td><a href="Ihm.html#VALinit_graph">init_graph</a> [<a href="Ihm.html">Ihm</a>]</td>
+<td><div class="info">
+<p><code class="code">init_graph param</code> initializes the graphic window.</p>
+
+</div>
+</td></tr>
+<tr><td align="left"><div>N</div></td></tr>
+<tr><td><a href="Rrt.html#VALnearest">nearest</a> [<a href="Rrt.html">Rrt</a>]</td>
+<td><div class="info">
+<p><code class="code">nearest param n_target array_nodes bool_array f_dist</code> return the closest node in <code class="code">array_nodes</code> from <code class="code">n_target</code> with the criteria <code class="code">f_dist</code></p>
+
+</div>
+</td></tr>
+<tr><td align="left"><div>P</div></td></tr>
+<tr><td><a href="Problem.Problem.html#VALpredecessor">predecessor</a> [<a href="Problem.Problem.html">Problem.Problem</a>]</td>
+<td><div class="info">
+<p><code class="code">predecessor nodes node</code> returns the predecessor of <code class="code">node</code> in the array <code class="code">nodes</code></p>
+
+</div>
+</td></tr>
+<tr><td align="left"><div>R</div></td></tr>
+<tr><td><a href="Rrt.html#VALrandom_aircraft">random_aircraft</a> [<a href="Rrt.html">Rrt</a>]</td>
+<td><div class="info">
+<p><code class="code">random_aircraft param i</code> return a random aircraft for the aircraft <code class="code">i</code> within the space of research defined in param</p>
+
+</div>
+</td></tr>
+<tr><td><a href="Ihm.html#VALround_dfrac">round_dfrac</a> [<a href="Ihm.html">Ihm</a>]</td>
+<td><div class="info">
+<p><code class="code">round_dfrac i float</code> returns the rounded float with <code class="code">i</code> digits</p>
+
+</div>
+</td></tr>
+<tr><td><a href="Rrt.html#VALrrt">rrt</a> [<a href="Rrt.html">Rrt</a>]</td>
+<td><div class="info">
+<p><code class="code">rrt param f_dist f_random_node f_nearest_neighbours f_extend f_traceback</code> returns the tracebacks and display a solution of the problem in <code class="code">param</code></p>
+
+</div>
+</td></tr>
+<tr><td align="left"><div>S</div></td></tr>
+<tr><td><a href="Rrt.html#VALsample_free">sample_free</a> [<a href="Rrt.html">Rrt</a>]</td>
+<td><div class="info">
+<p><code class="code">sample_free param i</code> create a random node with the id <code class="code">i</code></p>
+
+</div>
+</td></tr>
+<tr><td><a href="Ihm.html#VALscale">scale</a> [<a href="Ihm.html">Ihm</a>]</td>
+<td><div class="info">
+<p><code class="code">scale window param aircraft</code> returns the graphic window coordinates corresponding to coordinates <code class="code">(x,y)</code> of the <code class="code">aircraft</code> in the problem space.</p>
+
+</div>
+</td></tr>
+<tr><td><a href="Ihm.html#VALsleep">sleep</a> [<a href="Ihm.html">Ihm</a>]</td>
+<td><div class="info">
+<p><code class="code">sleep t</code> waits <code class="code">t</code> seconds.</p>
+
+</div>
+</td></tr>
+<tr><td><a href="Rrt.html#VALsteer">steer</a> [<a href="Rrt.html">Rrt</a>]</td>
+<td><div class="info">
+<p><code class="code">steer param array_nearest array_random id_first bool_array</code> return the <code class="code">new_node_array</code> from <code class="code">array_nearest</code> to <code class="code">array_target</code></p>
+
+</div>
+</td></tr>
+<tr><td align="left"><div>T</div></td></tr>
+<tr><td><a href="Rrt.html#VALtest_avion">test_avion</a> [<a href="Rrt.html">Rrt</a>]</td>
+<td><div class="info">
+<p><code class="code">test_avion a1 a2 dist</code> return true if the distance between <code class="code">a1</code> and <code class="code">a2</code> is greater than <code class="code">dist</code></p>
+
+</div>
+</td></tr>
+<tr><td><a href="Rrt.html#VALtest_dist_secu">test_dist_secu</a> [<a href="Rrt.html">Rrt</a>]</td>
+<td><div class="info">
+<p><code class="code">test_dist_secu param n i a1</code> recursive function return true if there is no distance issue between aircrafts of node array <code class="code">n</code> and <code class="code">a1</code></p>
+
+</div>
+</td></tr>
+<tr><td><a href="Rrt.html#VALtraceback">traceback</a> [<a href="Rrt.html">Rrt</a>]</td>
+<td><div class="info">
+<p><code class="code">traceback assoc_nodes node list_node</code> recursive function which look for the predecesor of node in assoc_nodes and add it to list_node</p>
+
+</div>
+</td></tr>
+<tr><td><a href="Rrt.html#VALtracebacks">tracebacks</a> [<a href="Rrt.html">Rrt</a>]</td>
+<td><div class="info">
+<p><code class="code">tracebacks param assoc_nodes i list_nodes</code> recursive function which return the tracebacks of all aircrafts in <code class="code">list_nodes</code>.</p>
+
+</div>
+</td></tr>
+<tr><td><a href="Rrt.html#VALtravel_time">travel_time</a> [<a href="Rrt.html">Rrt</a>]</td>
+<td><div class="info">
+<p><code class="code">travel_time param x_dest y_dest node_start</code> returns the time associated with the travel from <code class="code">node_start</code> to <code class="code">(x_dest,y_dest)</code></p>
+
+</div>
+</td></tr>
+</table>
+</body>
+</html>

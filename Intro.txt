@@ -1,0 +1,41 @@
+
+
+{C Noemie Billion, Melanie Jouquey, Thibault Rivoalen}
+{C IENAC 20 - SITA}
+{C Ecole Nationale de l'Aviation Civile}
+
+{2 Presentation}
+
+A RRT solving programm for conflicts resolution on aircrafts.
+
+{2 Installation}
+
+Compile using command :
+{v
+> make
+v}
+
+This command creates an executable file [prog] and an HTML documentation that can be found in subdirectory [doc/]
+
+{2 Usage }
+
+Run the program :
+{v
+> ./prog
+v}
+
+{2 Reference manual }
+
+List of modules:
+
+{!modules:  Ihm Rrt Problem}
+
+
+You may also refer to the following indexes:
+
+{!indexlist}
+
+This documentation was produced with [ocamldoc]:
+{v
+ocamldoc -html -t "RRT" -intro Intro.txt -d [doc_directory] *.mli
+v}
