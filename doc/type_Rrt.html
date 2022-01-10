@@ -1,0 +1,68 @@
+<html><head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<meta content="text/html; charset=iso-8859-1" http-equiv="Content-Type">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="Start" href="index.html">
+<link title="Index of types" rel=Appendix href="index_types.html">
+<link title="Index of values" rel=Appendix href="index_values.html">
+<link title="Index of modules" rel=Appendix href="index_modules.html">
+<link title="Ihm" rel="Chapter" href="Ihm.html">
+<link title="Problem" rel="Chapter" href="Problem.html">
+<link title="Rrt" rel="Chapter" href="Rrt.html"><title>RRT : Rrt</title>
+</head>
+<body>
+<code class="code"><span class="keyword">sig</span><br>
+&nbsp;&nbsp;<span class="keyword">type</span>&nbsp;obstacle&nbsp;=&nbsp;{&nbsp;x&nbsp;:&nbsp;float;&nbsp;y&nbsp;:&nbsp;float;&nbsp;radius&nbsp;:&nbsp;float;&nbsp;}<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;distance&nbsp;:&nbsp;float&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;float&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;float<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;distance_aircraft&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.aircraft&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.aircraft&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;float<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;distance_node&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.param&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;float<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;compare_dist&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">'</span>a&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keywordsign">'</span>b&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keywordsign">'</span>c&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keywordsign">'</span>c&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;(<span class="keywordsign">'</span>a&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keywordsign">'</span>b&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keywordsign">'</span>c&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Stdlib</span>.<span class="constructor">Float</span>.t)&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;nearest_neighbours&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">'</span>a&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keywordsign">'</span>b&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keywordsign">'</span>c&nbsp;array&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;(<span class="keywordsign">'</span>a&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keywordsign">'</span>b&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keywordsign">'</span>c&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Stdlib</span>.<span class="constructor">Float</span>.t)&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keywordsign">'</span>c<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;set_parent&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node&nbsp;array&nbsp;<span class="constructor">Stdlib</span>.ref&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;traceback&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;(int&nbsp;*&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node)&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node&nbsp;list<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;random_aircraft&nbsp;:&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.param&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.aircraft<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;random_node&nbsp;:&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.param&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;test_obstacle&nbsp;:&nbsp;<span class="constructor">Rrt</span>.obstacle&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.aircraft&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;bool<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;collision_free&nbsp;:&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;bool<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;test_domain&nbsp;:&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.param&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.aircraft&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;bool<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;in_domain&nbsp;:&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.param&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;bool<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;test_avion&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.aircraft&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.aircraft&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;float&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;bool<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;test_dist_secu&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.param&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.aircraft&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;bool<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;collision_free_bis&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.param&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;bool<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;extend&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.param&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;rrt&nbsp;:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.param&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.param&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;float)&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.param&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;int&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node)&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.param&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node&nbsp;array&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.param&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;float)&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">'</span>a)&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.param&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keywordsign">'</span>a&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node)&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;(<span class="keywordsign">'</span>a&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node&nbsp;array&nbsp;<span class="constructor">Stdlib</span>.ref&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keywordsign">'</span>b)&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;((int&nbsp;*&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node)&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="keywordsign">'</span>c&nbsp;list&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node&nbsp;list)&nbsp;<span class="keywordsign">-&gt;</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node&nbsp;list<br>
+&nbsp;&nbsp;<span class="keyword">val</span>&nbsp;print_node&nbsp;:&nbsp;<span class="constructor">Problem</span>.<span class="constructor">Problem</span>.node&nbsp;<span class="keywordsign">-&gt;</span>&nbsp;unit<br>
+<span class="keyword">end</span></code></body></html>
