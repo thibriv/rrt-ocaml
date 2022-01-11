@@ -6,38 +6,40 @@ module Problem =
             y:float
           }
 
-        type node = {
+        type node_aircraft = {
             id:int;
-            mutable aircrafts_coord : aircraft array;
-            time:float;
-            mutable pred:int
+            mutable aircraft: aircraft;
+            mutable pred:int;
+            mutable time:float
           }
 
         type param = {
             nb_aircrafts:int;
-            goal:node;
-            start:node;
+            goal:node_aircraft array;
+            start:node_aircraft array;
             dist_min:float;
-            v:float;
-            mutable time_min:float;
-            mutable time_max:float;
             x_min:float;
             y_min:float;
             x_max:float;
             y_max:float;
+            v:float;
             mutable pas:float;
           }
 
         let init = fun () ->
-            (*let node1 = {id=1;aircrafts_coord=[|{id_aircraft=0;x=1.;y=2.};{id_aircraft=1;x=5.;y=0.}|];time=0.;pred=0} in*)
-            let node2 = {id=2;aircrafts_coord=[|{id_aircraft=0;x=1.;y=2.}; {id_aircraft=1;x=6.;y=4.}|];time=1.;pred=0} in
-            let node3 = {id=1;aircrafts_coord=[|{id_aircraft=0;x=6.;y=7.}; {id_aircraft=1;x=0.;y=0.}|];time=2.;pred=0} in
-            (*let node4 = {id=4;aircrafts_coord=[|{id_aircraft=0;x=6.;y=7.};{id_aircraft=1;x=1.;y=8.}|];time=2.;pred=0} in*)
-            let pb ={nb_aircrafts=2;
-            goal=node2;start=node3;
-            dist_min=1.;v=1.;
-            time_min=0.;time_max=10.;
+            let node2 = [|{id=1000000000;aircraft={id_aircraft=0;x=1.;y=2.};pred=0;time=0.};{id=1000000001;aircraft={id_aircraft=1;x=6.;y=4.};pred=0;time=0.};{id=1000000004;aircraft={id_aircraft=2;x=0.;y=10.};pred=0;time=0.}|] in
+            let node3 = [|{id=1000000002;aircraft={id_aircraft=0;x=10.;y=10.};pred=0;time=Float.infinity};{id=1000000003;aircraft={id_aircraft=1;x=0.;y=0.};pred=1;time=Float.infinity};{id=1000000005;aircraft={id_aircraft=2;x=10.;y=0.};pred=1;time=Float.infinity}|] in
+            let pb ={nb_aircrafts=3;
+            goal=node3;start=node2;
+            dist_min=1.;
             x_min=0.;y_min=0.;x_max=10.;y_max=10.;
-            pas=0.3} in
+            v=1.;
+            pas=0.3;} in
             pb
+
+        let predecessor = fun nodes node ->
+            let pred = Array.find_opt (fun n -> node.pred=n.id) nodes in
+            match pred with
+                None -> node
+                |Some n -> n
     end

@@ -14,6 +14,11 @@ let colors= ref [|Graphics.blue;Graphics.green|]
 let obst_color=Graphics.red
 let default_color=Graphics.black
 
+let round_dfrac d x =
+    if x -. (Float.round x) = 0. then x else                   (* x is an integer. *)
+    let m = 10. ** (float d) in                       (* m moves 10^-d to 1. *)
+    (Float.floor ((x *. m) +. 0.5)) /. m
+
 let define_colors = fun nb mini maxi->
     let range = fun nb pas -> mini + (nb * pas) in
     let rec colors = fun nb acc (r,vr) (g,vg) (b,vb) ->
@@ -59,39 +64,22 @@ let scale = fun window pb aircraft ->
     and y_graph= truncate (((float window.height -.(2.*.margin)) *.(y-.pb.Problem.y_min)/.dy)+.margin) in
     (x_graph,y_graph)
 
-let display_pt = fun scale node r_pt r_obst last->
-    let rec show = fun i ->
-        if i >= (Array.length node.Problem.aircrafts_coord)
-        then ()
-        else
-            let (x,y) = scale node.Problem.aircrafts_coord.(i) in
-            Graphics.set_color !colors.(node.Problem.aircrafts_coord.(i).id_aircraft);
-            Graphics.draw_circle x y r_pt;
-            Graphics.fill_circle x y r_pt;
-            Graphics.set_color default_color;
-            if last then (Graphics.set_color obst_color;
-                let (rx,ry) = scale {Problem.id_aircraft=0;x=r_obst;y=r_obst} in
-                Graphics.draw_ellipse x y rx ry);
-            Graphics.set_color default_color;
-            show (i+1) in
-    ignore (show 0)
+let display_pt = fun scale node r_pt r_obst last time->
+    let (x,y) = scale node.Problem.aircraft in
+    Graphics.set_color !colors.(node.Problem.aircraft.id_aircraft);
+    Graphics.draw_circle x y r_pt;
+    Graphics.fill_circle x y r_pt;
+    if time then (Graphics.moveto (x+r_pt) (y-r_pt);
+        Graphics.draw_string (Float.to_string (round_dfrac 2 node.Problem.time)));
+    if last then (Graphics.set_color obst_color;
+        let (rx,ry) = scale {Problem.id_aircraft=0;x=r_obst;y=r_obst} in
+        Graphics.draw_ellipse x y rx ry);
+    Graphics.set_color default_color
 
-let display_seg = fun scale node1 node2 ->
-    let rec show = fun i acc ->
-        if i >= (Array.length node1.Problem.aircrafts_coord)
-        then acc
-        else
-            let (x1,y1) = scale node1.Problem.aircrafts_coord.(i) in
-            let (x2,y2) = scale node2.Problem.aircrafts_coord.(i) in
-            let acc = Array.append [|(x1,y1,x2,y2)|] acc in
-            show (i+1) acc in
-    let tab = show 0 [||] in
-    Graphics.draw_segments tab
-
-let predecessor = fun nodes node -> (* nodes doit être trié selon les id des noeuds *)
-    if node.Problem.pred = 0
-    then node
-    else Array.get nodes (node.Problem.pred - 1)
+let display_seg = fun scale node pred acc ->
+    let (x1,y1) = scale node.Problem.aircraft in
+    let (x2,y2) = scale pred.Problem.aircraft in
+    Array.append acc [|(x1,y1,x2,y2)|]
 
 let sleep = fun n ->
   let start = Unix.gettimeofday() in
@@ -104,30 +92,37 @@ let sleep = fun n ->
       if remaining > 0.0 then delay remaining in
   delay n
 
-let display = fun scale nodes radius_pt radius_obst ->
-    let rec scan = fun i ->
+let display = fun param scale nodes radius_pt radius_obst time->
+    let rec scan = fun i acc->
         if i = (Array.length nodes)
-        then ()
+        then acc
         else (let node = nodes.(i) in
-            let pred = predecessor nodes node in
-            display_seg scale pred node;
-            display_pt scale node radius_pt radius_obst (i = (Array.length nodes)-1);
-            scan (i+1)) in
-    Array.sort compare_node_id nodes;
+            let pred = Problem.predecessor nodes node in
+            let acc = display_seg scale node pred acc in
+            display_pt scale node radius_pt radius_obst (i >= (Array.length nodes)-param.Problem.nb_aircrafts) time;
+            scan (i+1) acc) in
     Graphics.clear_graph ();
-    ignore (scan 0)
+    let tab = scan 0 [||] in
+    Graphics.draw_segments tab
 
-let display_traceback = fun path nodes scale ->
-    let rec scan = fun path ->
-        match path with
-            node::rest -> (display_pt scale node (radius_pt + 1) 0. false;
-                let pred = predecessor nodes node in
-                display_seg scale pred node;
-                scan rest)
-            | [] -> () in
-    Array.sort compare_node_id nodes;
+let rec display_traceback = fun path nodes scale acc->
+    match path with
+        node::rest -> (display_pt scale node (radius_pt + 1) 0. false false;
+            let pred = Problem.predecessor nodes node in
+            let acc = display_seg scale node pred acc in
+            display_traceback rest nodes scale acc)
+        | [] -> Graphics.draw_segments acc
+
+let display_tracebacks = fun paths nodes scale ->
+    let rec scan = fun i ->
+        if i=Array.length paths
+        then ()
+        else(
+            display_traceback paths.(i) nodes scale [||];
+            scan (i+1)
+        ) in
     Graphics.clear_graph ();
-    ignore (scan path)
+    scan 0
 
 let init_graph = fun pb ->
   Graphics.open_graph (Printf.sprintf " %dx%d" width height);
@@ -135,17 +130,17 @@ let init_graph = fun pb ->
   colors := define_colors pb.Problem.nb_aircrafts 0 200
 
 let do_at_iter = fun nodes param ->
-    display (fun aircraft -> scale window param aircraft) !nodes radius_pt param.dist_min
-    (* sleep 0.5 *)
+    display param (fun aircraft -> scale window param aircraft) !nodes radius_pt param.dist_min false;
+    sleep 0.5
 
-let do_at_end = fun path nodes param->
+let do_at_end = fun paths nodes param->
     let finish = ref false in
     while (not !finish) do
         Printf.printf "\nWhat do you want to see?\n \t g: The whole graph\n\t t: The traceback\n\t q: Quit the application\nChoice: ";
         let action = read_line () in
         match action with
-            "g"|"G"-> display (fun aircraft -> scale window param aircraft) nodes radius_pt param.dist_min
-            |"t"|"T"-> display_traceback path nodes (fun aircraft -> scale window param aircraft)
+            "g"|"G"-> display param (fun aircraft -> scale window param aircraft) nodes radius_pt param.dist_min false
+            |"t"|"T"-> display_tracebacks paths nodes (fun aircraft -> scale window param aircraft)
             |"q"|"Q"-> finish:=true
             |_ -> Printf.printf "\nAn error has been encountered, please try again.\n"
     done
