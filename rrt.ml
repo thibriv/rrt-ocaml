@@ -105,7 +105,7 @@ let rrt = fun param f_dist f_random_node f_nearest_neighbours f_extend f_set_par
          let new_node=(f_extend param node_nearest_neighbours node_target) in
          if new_node.Problem.aircrafts_coord!=[||]
          then (f_set_parent node_nearest_neighbours new_node array_nodes;
-          (* Ihm.do_at_iter array_nodes param; *)
+          Ihm.do_at_iter array_nodes param;
           sous_rrt param new_node array_nodes)
          else (sous_rrt param current_node array_nodes)) in
   let nodes=ref [|param.Problem.start|] in
