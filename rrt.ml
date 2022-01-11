@@ -1,25 +1,5 @@
 open Problem
 
-let print_array_nodes = fun nodes ->
-    let rec sub_print = fun i ->
-        if i=Array.length nodes
-        then Printf.printf "]\n"
-        else (Printf.printf "%d; " nodes.(i).Problem.pred;
-        sub_print (i+1)) in
-    Printf.printf "[";
-    sub_print 0
-
-let print_paths = fun paths ->
-    let rec print_list = fun path ->
-        match path with
-            head::tail -> (Printf.printf "%d; " head.Problem.id;print_list tail)
-            |_->(Printf.printf "]\n") in
-    let rec sub_paths = fun i ->
-        if i=Array.length paths
-        then ()
-        else (Printf.printf "["; print_list paths.(i); sub_paths (i+1)) in
-    sub_paths 0
-
 let distance_aircraft = fun aircraft1 aircraft2->
   sqrt ((aircraft1.Problem.x-.aircraft2.Problem.x)**2.+.(aircraft1.Problem.y-.aircraft2.Problem.y)**2.)
 
@@ -122,8 +102,6 @@ let rec tracebacks = fun param assoc_nodes nodes i array_paths ->
     then array_paths
     else (let path = traceback assoc_nodes nodes.(i) [] in
           let array_paths = Array.append [|path|] array_paths in
-          print_paths array_paths;
-          Printf.printf "%d\n" i;
     tracebacks param assoc_nodes nodes (i+1) array_paths
     )
 
@@ -137,14 +115,11 @@ let rec tracebacks = fun param assoc_nodes nodes i array_paths ->
           let new_node=(f_extend param node_nearest_neighbours (node_target:Problem.node_aircraft array) ((Array.length !array_nodes)+1) bool) in
           if collision_free param new_node
           then let bool=add_and_test param bool new_node array_nodes f_dist in
-               (*Ihm.do_at_iter array_nodes param;*)
+               Ihm.do_at_iter array_nodes param;
            sous_rrt param new_node array_nodes bool
           else (sous_rrt param current_node array_nodes bool)) in
    let nodes=ref param.Problem.start in
    nodes:=(sous_rrt param param.Problem.start nodes (Array.init param.Problem.nb_aircrafts (fun i -> true)));
-   Printf.printf "array_goal_pred\n";
-   print_array_nodes param.Problem.goal;
       let paths=f_traceback param (Array.to_list (Array.combine (Array.map (fun node->node.Problem.id) !nodes) !nodes)) param.Problem.goal 0 [||] in
-      print_paths paths;
       Ihm.do_at_end paths !nodes param;
       paths;;
